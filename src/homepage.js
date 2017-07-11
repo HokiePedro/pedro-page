@@ -5,12 +5,13 @@ import Popover from 'material-ui/Popover'
 import IconButton from 'material-ui/IconButton';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
-import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
+import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import {blue500, white, cyan500, black} from 'material-ui/styles/colors';
 import {GridList, GridTile} from 'material-ui/GridList';
 import Subheader from 'material-ui/Subheader';
 import StarBorder from 'material-ui/svg-icons/toggle/star-border';
+import Image from 'material-ui-image'
 
 const styles = {
   mainContainer: {
@@ -30,6 +31,15 @@ const styles = {
   },
   appBarTitleStyle: {
     color: 'black'
+  },
+  nameHeaderStyle:{
+    fontSize:'30px',
+    zIndex: 100,
+    marginBottom: '-58px',
+    fontFamily: 'sans-serif',
+    fontWeight: 400,
+    borderBottom: '2px solid',
+    color:'white'
   }
 };
 
@@ -70,67 +80,74 @@ class Homepage extends Component{
 
   render(){
 
-    const IconMenuExampleSimple = () => (
+    const IconMenuPageSelection = () => (
    <div>
      <IconMenu
-       iconButtonElement={<IconButton><MoreVertIcon /></IconButton>}
-       anchorOrigin={{horizontal: 'left', vertical: 'top'}}
-       targetOrigin={{horizontal: 'left', vertical: 'top'}}
+       iconButtonElement={<IconButton><NavigationMenu /></IconButton>}
+       anchorOrigin={{horizontal: 'right', vertical: 'top'}}
+       targetOrigin={{horizontal: 'right', vertical: 'top'}}
      >
-       <MenuItem primaryText="Refresh" />
-       <MenuItem primaryText="Send feedback" />
-       <MenuItem primaryText="Settings" />
-       <MenuItem primaryText="Help" />
-       <MenuItem primaryText="Sign out" />
+       <MenuItem primaryText="Home" />
+       <MenuItem primaryText="About Me" />
+       <MenuItem primaryText="Social Media" />
+       <MenuItem primaryText="Contact" />
      </IconMenu>
    </div>
  );
 
-
-    const rightIcon = () => (
-    <div>
-      <IconMenu
-        iconButtonElement={<IconButton><MoreVertIcon color={black}/> </IconButton>}
-        anchorOrigin={{horizontal: 'left', vertical: 'top'}}
-        targetOrigin={{horizontal: 'left', vertical: 'top'}}
-      >
-        <MenuItem primaryText="Refresh" />
-        <MenuItem primaryText="Send feedback" />
-        <MenuItem primaryText="Settings" />
-        <MenuItem primaryText="Help" />
-        <MenuItem primaryText="Sign out" />
-      </IconMenu>
-   </div>
-    );
-
-    const Logged = (props) => (
-      <IconButton onTouchTap={this.toggleOpenAbout}><MoreVertIcon color={black}/> </IconButton>
-    );
-
-
-
-    const aboutPopover = (
-      <Popover
-        open={this.state.openAboutPopover}
-        anchorEl={this.state.aboutMenuAnchor}
-        anchorOrigin={{horizontal: 'right', vertical: 'top'}}
-        targetOrigin={{horizontal: 'right', vertical: 'top'}}
-      />
-    );
-
     return (
       <div style={styles.mainContainer}>
-        {aboutPopover}
-        <div>
-          <AppBar style={styles.appBarStyle}
-            titleStyle={styles.appBarTitleStyle}
-            title={'Sortophoto'}
-            showMenuIconButton={false}
-            iconElementRight={<IconMenuExampleSimple />}
-
-          />
-        </div>
-          
+          <div style={{display: 'flex', flexDirection:'column', alignItems:'center'}}>
+            <h1 style={styles.nameHeaderStyle}>The Life of Pedro</h1>
+            <Image style={{width:'100%', height:'100%'}} src={'http://i.imgur.com/zfDtgcq.jpg'} />
+          </div>
+          <div>
+            <AppBar style={styles.appBarStyle}
+              titleStyle={styles.appBarTitleStyle}
+              title={'Sortophoto'}
+              showMenuIconButton={false}
+              iconElementRight={<IconMenuPageSelection />}
+            />
+          </div>
+          <GridList
+            cellHeight={180}
+            style={styles.GridStyle}>
+          <Subheader>Photos</Subheader>
+            <div style={styles.mainContainer}>
+              <GridTile
+                style={{height: '420px', margin: '15px'}}
+                key={imageData.img}
+                title={imageData.title}
+                subtitle={<span>by <b>{imageData.author}</b></span>}
+                actionIcon={<IconButton><StarBorder color="white" /></IconButton>}>
+                <img src={imageData.img} />
+              </GridTile>
+              <GridTile
+                style={{height: '420px', margin: '15px'}}
+                key={'1'}
+                title={imageData.title}
+                subtitle={<span>by <b>{imageData.author}</b></span>}
+                actionIcon={<IconButton><StarBorder color="white" /></IconButton>}>
+                <img src={imageData.img} />
+              </GridTile>
+              <GridTile
+                style={{height: '420px', margin: '15px'}}
+                key={'2'}
+                title={imageData.title}
+                subtitle={<span>by <b>{imageData.author}</b></span>}
+                actionIcon={<IconButton><StarBorder color="white" /></IconButton>}>
+                <img src={imageData.img} />
+              </GridTile>
+              <GridTile
+                style={{height: '420px', margin: '15px'}}
+                key={'3'}
+                title={imageData.title}
+                subtitle={<span>by <b>{imageData.author}</b></span>}
+                actionIcon={<IconButton><StarBorder color="white" /></IconButton>}>
+                <img src={imageData.img} />
+              </GridTile>
+            </div>
+          </GridList>
       </div>
     );
   }
