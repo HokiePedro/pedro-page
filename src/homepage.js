@@ -1,3 +1,5 @@
+
+
 import React from 'react';
 import {Component, PropTypes} from 'react';
 import AppBar from 'material-ui/AppBar'
@@ -12,9 +14,13 @@ import {blue500, white, cyan500, black} from 'material-ui/styles/colors';
 import {GridList, GridTile} from 'material-ui/GridList';
 import Subheader from 'material-ui/Subheader';
 import StarBorder from 'material-ui/svg-icons/toggle/star-border';
+import CommunicationEmail from 'material-ui/svg-icons/communication/email';
 import Image from 'material-ui-image';
 import Avatar from 'material-ui/Avatar';
 import Divider from 'material-ui/Divider';
+import Scrollchor from 'react-scrollchor';
+import Sticky from 'react-sticky-el';
+import ActionGrade from 'material-ui/svg-icons/action/grade';
 
 const styles = {
   mainContainer: {
@@ -30,10 +36,7 @@ const styles = {
     justifyContent: 'space-around'
   },
   appBarStyle: {
-    backgroundColor: 'white',
-  },
-  appBarTitleStyle: {
-    color: 'black'
+    backgroundColor: 'white'
   },
   nameHeaderStyle:{
     fontSize:'65px',
@@ -49,8 +52,8 @@ const styles = {
     fontSize:'18px',
     zIndex: 100,
     fontFamily: 'sans-serif',
-    border: '2px solid',
-    color:'black',
+    border: '1.35px solid',
+    fontWeight: 100,
     padding:10
   },
   landing: {
@@ -79,14 +82,27 @@ const styles = {
     margin: '20px'
   },
   personalMeImage:{
-    height:'350px',
+    height:'345px',
     width:'350px',
     backgroundImage: `url(${'src/img/personalPedro.JPG'})`,
     backgroundSize:'350px',
     marginLeft: '120px',
     marginRight: '120px',
+  },
+  workExperienceImage:{
+      height:'58px',
+      width:'260px',
+      backgroundSize:'350px',
+      marginRight: '20px'
+  },
+  scrollNav:{
+    textDecoration: 'none'
+  },
+  pHeaderStyle: {
+    fontWeight: 400
   }
 };
+
 
 const imageData =
 {
@@ -94,51 +110,6 @@ const imageData =
   title: 'Sample Image',
   author: 'Pedro Sorto'
 };
-
-const tilesData = [
-  {
-    img: 'src/img/IMG_5282.jpg',
-    title: 'Breakfast',
-    author: 'jill112',
-    featured: true,
-  },
-  {
-    img: 'src/img/2000px-Costco_Wholesale.svg.png',
-    title: 'Tasty burger',
-    author: 'pashminu',
-  },
-  {
-    img: 'src/img/humangeo1.jpg',
-    title: 'Camera',
-    author: 'Danson67',
-  },
-  {
-    img: 'src/img/kanyelaugh.gif',
-    title: 'Morning',
-    author: 'fancycrave3',
-    featured: true,
-  },
-  {
-    img: 'src/img/kirkland-signature-brand-3.gif',
-    title: 'Hats',
-    author: 'Hans',
-  },
-  {
-    img: 'src/img/pandapan.jpg',
-    title: 'Honey',
-    author: 'fancycravel',
-  },
-  {
-    img: 'src/img/Pizza_Steve_Suit.png',
-    title: 'Vegetables',
-    author: 'jill111',
-  },
-  {
-    img: 'src/img/spongegar.png',
-    title: 'Water plant',
-    author: 'BkrmadtyaKarki',
-  },
-];
 
 class Homepage extends Component{
   constructor(props){
@@ -176,10 +147,11 @@ class Homepage extends Component{
        anchorOrigin={{horizontal: 'right', vertical: 'top'}}
        targetOrigin={{horizontal: 'right', vertical: 'top'}}
      >
-       <MenuItem primaryText="Home" />
-       <MenuItem primaryText="About Me" />
-       <MenuItem primaryText="Social Media" />
-       <MenuItem primaryText="Contact" />
+       <Scrollchor to='' style={styles.scrollNav}><MenuItem primaryText="Home" /></Scrollchor>
+       <Scrollchor to='#personalLife' style={styles.scrollNav}><MenuItem primaryText="Personal" /></Scrollchor>
+       <Scrollchor to='#professionalLife' style={styles.scrollNav}><MenuItem primaryText="Professional" /></Scrollchor>
+       <Scrollchor to='#experience' style={styles.scrollNav}><MenuItem primaryText="Experience" /></Scrollchor>
+       <Scrollchor to='#contact' style={styles.scrollNav}><MenuItem primaryText="Contact" /></Scrollchor>
      </IconMenu>
    </div>
  );
@@ -190,23 +162,63 @@ class Homepage extends Component{
         <div style={styles.mainContainer}>
           <Paper elevation={3} style={styles.landing}>
             <div style={{display: 'flex', flexDirection:'column', alignItems:'center'}}>
-              <h1 style={styles.nameHeaderStyle}>The Life of Pedro</h1>
+              <Scrollchor to='#personalLife' style={styles.scrollNav}><h1 style={styles.nameHeaderStyle}>The Life of Pedro</h1></Scrollchor>
             </div>
           </Paper>
+          <Sticky stickyStyle={{zIndex: 110}}>
             <div>
               <AppBar style={styles.appBarStyle}
                 titleStyle={styles.appBarTitleStyle}
-                title={'Pedro Sorto'}
+                title={
+                <Scrollchor to='#personalLife' style={styles.scrollNav}><div style={{color: '#535353', fontWeight: 100, width: '10%', paddingLeft: '10px'}}>Pedro Sorto</div></Scrollchor>
+                }
                 showMenuIconButton={false}
                 iconElementRight={<IconMenuPageSelection />}
               />
           </div>
-          <div className={'aboutMe'} style={{display:'flex', flexDirection:'row', justifyContent:'center', margin:'40px'}}>
+          </Sticky>
+          <div id='personalLife' style={{display:'flex', flexDirection:'row', justifyContent:'center', margin:'20px 40px 160px 40px', paddingTop:120}}>
+              <div style={{display: 'flex', flexDirection:'column', alignItems:'center'}}>
+                <h5 style={styles.contentHeaderStyle}>Personal Life</h5>
+                 <div style={{display:'flex', flexDirection:'row', justifyContent:'space-around'}}>
+                  <Paper zDepth={0} style={{height:'350px', width:'350px',  marginLeft: '120px', marginRight: '120px', fontWeight: 100}}>
+                    <h3 style={styles.pHeaderStyle}>Personal Details</h3>
+                    <div style={{display: 'flex', flexDirection:'column', fontSize: '13px', fontFamily: 'sans-serif', lineHeight:2,}}>
+                    In my freetime, I enjoy biking and running. I recently traveled to the San Francisco Bay Area and all around Colorado on
+                    a hiking, biking, and brewery journey.
+                    <br/><br/>One of my favorite aspects of living in the city is the great number of live music
+                    performances that I have access to. From small concert venues to large music festivals, I'm always down for a show whether it's a favorite artist or someone new.
+                    <br/><br/>When I'm not outside, I'm either binge watching some of my favorites shows on Netflix or playing online games with
+                    my close friends.
+                    </div>
+                  </Paper>
+                  <Paper zDepth={2} style={styles.personalMeImage} />
+                </div>
+              </div>
+          </div>
+          <div id='professionalLife' style={{display:'flex', flexDirection:'row', justifyContent:'space-around', margin:'40px 40px 160px 40px', paddingTop:120}}>
               <div style={{display: 'flex', flexDirection:'column', alignItems:'center'}}>
                 <h5 style={styles.contentHeaderStyle}>Professional Life</h5>
-                 <div style={{display:'flex', flexDirection:'row', justifyContent:'space-between'}}>
-                  <Paper zDepth={2} style={styles.aboutMeImage} />
-                  <Paper zDepth={0} style={{height:'350px', width:'350px', marginLeft: '10px', marginRight: '10px', backgroundColor: '#efefef'}}>
+                 <div style={{display:'flex', flexDirection:'row', justifyContent:'space-between', flexWrap:'wrap'}}>
+                   <Paper zDepth={1} style={{height:'350px', width:'350px'}}>
+                     <Avatar style={{margin:'13px', borderRadius:'5%'}} backgroundColor={white} size={59} src="src/img/react.svg"/>
+                     <Avatar style={{margin:'13px', borderRadius:'5%'}} backgroundColor={white} size={59} src="src/img/Tux.svg"/>
+                     <Avatar style={{margin:'13px', borderRadius:'5%'}} backgroundColor={white} size={59} src="src/img/Npm-logo.svg"/>
+                     <Avatar style={{margin:'13px', borderRadius:'5%'}} backgroundColor={white} size={59} src="src/img/docker.svg"/>
+                     <Avatar style={{margin:'13px', borderRadius:'5%'}} backgroundColor={white} size={59} src="src/img/AngularJS-Shield.svg"/>
+                     <Avatar style={{margin:'13px', borderRadius:'5%'}} backgroundColor={white} size={59} src="src/img/cpp_logo.svg"/>
+                     <Avatar style={{margin:'13px', borderRadius:'5%'}} backgroundColor={white} size={59} src="src/img/gitlogo.png"/>
+                     <Avatar style={{margin:'13px', borderRadius:'5%'}} backgroundColor={white} size={59} src="src/img/elasticsearch.svg"/>
+                     <Avatar style={{margin:'13px', borderRadius:'5%'}} backgroundColor={white} size={59} src="src/img/html5.svg"/>
+                     <Avatar style={{margin:'13px', borderRadius:'5%'}} backgroundColor={white} size={59} src="src/img/JIRA_logo.svg"/>
+                     <Avatar style={{margin:'13px', borderRadius:'5%'}} backgroundColor={white} size={59} src="src/img/jspm_io.svg"/>
+                     <Avatar style={{margin:'13px', borderRadius:'5%'}} backgroundColor={white} size={59} src="src/img/saltstack_logo.svg"/>
+                     <Avatar style={{margin:'13px', borderRadius:'5%'}} backgroundColor={white} size={59} src="src/img/webpack.svg"/>
+                     <Avatar style={{margin:'13px', borderRadius:'5%'}} backgroundColor={white} size={59} src="src/img/python.png"/>
+                     <Avatar style={{margin:'13px', borderRadius:'5%'}} backgroundColor={white} size={59} src="src/img/css3.png"/>
+                     <Avatar style={{margin:'13px', borderRadius:'5%'}} backgroundColor={white} size={59} src="src/img/aws.png"/>
+                   </Paper>
+                  <Paper zDepth={0} style={{height:'350px', width:'350px', marginLeft: '40px', marginRight: '40px'}}>
                     <div style={{display: 'flex', flexDirection:'column', fontSize: '14px', fontFamily: 'sans-serif', lineHeight:4,}}>
                       <span><b>Name:</b> Pedro Sorto</span>
                       <Divider/>
@@ -217,12 +229,12 @@ class Homepage extends Component{
                       <div><b>Education: </b>BS Computer Engineerin, Virginia Tech</div>
                     </div>
                   </Paper>
-                  <Paper zDepth={0} style={{height:'350px', width:'350px',  marginLeft: '10px', marginRight: '10px', backgroundColor: '#efefef'}}>
-                    <h3>Professional Details</h3>
+                  <Paper zDepth={0} style={{height:'350px', width:'350px',  marginLeft: '10px', marginRight: '10px', fontWeight: 100}}>
+                    <h3 style={styles.pHeaderStyle}>Professional Details</h3>
                     <div style={{display: 'flex', flexDirection:'column', fontSize: '13px', fontFamily: 'sans-serif', lineHeight:2,}}>
-                    I am currently a software developer at Digital Globe. I have worked on several projects under various Department of Defense contractors.
-                    My focus on these have been largely on front-end web develment with AngularJs and ReactJS, while utilizing backend services such as NGINX,
-                    docker, Elasticsearch, and python saltstack.
+                    I am currently a software developer at Digital Globe. I have worked on several projects for various Department of Defense contracts.
+                    My focus on these projects has been largely on front-end web development with AngularJs and ReactJS, while utilizing backend services such as NGINX,
+                    docker, Elasticsearch, and python SaltStack.
                     <br/><br/>
                     Outside of work, I have enjoyed participating in Hackathons, Tech Meetups, and Tech Talks.
                     </div>
@@ -230,83 +242,70 @@ class Homepage extends Component{
                 </div>
               </div>
           </div>
-          <div style={{display:'flex', flexDirection:'row', justifyContent:'center', margin:'40px'}}>
-              <div style={{display: 'flex', flexDirection:'column', alignItems:'center'}}>
-                <h5 style={styles.contentHeaderStyle}>Personal Life</h5>
-                 <div style={{display:'flex', flexDirection:'row', justifyContent:'space-around'}}>
-                  <Paper zDepth={0} style={{height:'350px', width:'350px',  marginLeft: '120px', marginRight: '120px', backgroundColor: '#efefef'}}>
-                    <h3>Personal Details</h3>
-                    <div style={{display: 'flex', flexDirection:'column', fontSize: '13px', fontFamily: 'sans-serif', lineHeight:2,}}>
-                    In my freetime, I enjoy biking and running! I recently traveled to the San Francisco Bay Area and all around Colorado on
-                    a hiking, biking, and brewery journey.
-                    <br/><br/>One of my favorite aspects of living in the city is the great number of live music
-                    performances that I have access to. I'll be attending Lollapalooza for the first time which will also be my first time in
-                    Chicago.
-                    <br/><br/>When I'm not outside, I'm either binge watching some of my favorites shows on Netflix or playing online games with
-                    my close friends.
-                    </div>
-                  </Paper>
-                  <Paper zDepth={2} style={styles.personalMeImage} />
+          <div id='experience' style={{display:'flex', flexDirection:'row', justifyContent:'center', margin:'40px', paddingTop: 120}}>
+              <div style={{width: '100%', display: 'flex', flexDirection:'column'}}>
+                <div style={{display: 'flex', flexDirection:'column', alignItems:'center'}}>
+                  <h5 style={styles.contentHeaderStyle}>Work Experience and Education</h5>
+                </div>
+                <div style={{display:'flex', flexDirection:'row', justifyContent:'flex-start', marginBottom: '50px', marginLeft: '110px'}}>
+                  <div style={{borderRight: '1px solid #e0e0e0'}}>
+                    <Paper zDepth={0} style={styles.workExperienceImage}><img style={{height:'85px'}} src={'src/img/digitalglobe.png'} />
+                      <Divider/>
+                      <div style={{display:'flex', justifyContent:'flex-end',fontWeight:100, paddingTop:'5px'}}>2015 - Current</div>
+                    </Paper>
+                  </div>
+                   <Paper zDepth={0} style={{height:'150px', width:'350px', marginLeft: '30px'}}>
+                     <h3>Digital Globe | HumanGeo</h3>
+                     <div style={{display: 'flex', flexDirection:'column', fontSize: '13px', fontFamily: 'sans-serif', lineHeight:2}}>
+                      Software Developer
+                     </div>
+                   </Paper>
+                </div>
+                <div style={{display:'flex', flexDirection:'row', justifyContent:'flex-start', marginBottom: '50px', marginLeft: '110px'}}>
+                  <div style={{borderRight: '1px solid #e0e0e0'}}>
+                    <Paper zDepth={0} style={styles.workExperienceImage}><img style={{height:'85px'}} src={'src/img/altamira.png'} />
+                      <Divider/>
+                      <div style={{display:'flex', justifyContent:'flex-end', fontWeight:100, paddingTop:'5px'}}>2012 - 2014</div>
+                    </Paper>
+                  </div>
+                   <Paper zDepth={0} style={{height:'150px', width:'350px', marginLeft: '30px'}}>
+                     <h3>Altamira | Invertix</h3>
+                     <div style={{display: 'flex', flexDirection:'column', fontSize: '13px', fontFamily: 'sans-serif', lineHeight:2}}>
+                       Junior Developer, Internship
+                     </div>
+                   </Paper>
+                </div>
+                <div style={{display:'flex', flexDirection:'row', justifyContent:'flex-start', marginBottom: '50px', marginLeft: '110px'}}>
+                  <div style={{borderRight: '1px solid #e0e0e0'}}>
+                    <Paper zDepth={0} style={styles.workExperienceImage}><img style={{height:'85px'}} src={'src/img/vt-logo.png'} />
+                      <Divider/>
+                      <div style={{display:'flex', justifyContent:'flex-end',fontWeight:100, paddingTop:'5px'}}>2010 - 2015</div>
+                    </Paper>
+                  </div>
+                   <Paper zDepth={0} style={{height:'150px', width:'350px', marginLeft: '30px'}}>
+                     <h3>Virginia Tech</h3>
+                     <div style={{display: 'flex', flexDirection:'column', fontSize: '13px', fontFamily: 'sans-serif', lineHeight:2}}>
+                       Computer Engineering, Bachelor of Science
+                     </div>
+                   </Paper>
                 </div>
               </div>
           </div>
-          <div className={'workExperience'} style={{display:'flex', flexDirection:'row', justifyContent:'center', margin:'40px'}}>
+          <div id='contact' style={{display:'flex', flexDirection:'row', justifyContent:'center', paddingTop: 120, backgroundColor: '#efefef'}}>
+            <div style={{width: '100%', display: 'flex', flexDirection:'column', backgroundColor:'none'}}>
               <div style={{display: 'flex', flexDirection:'column', alignItems:'center'}}>
-                <h5 style={styles.contentHeaderStyle}>Work Experience</h5>
+                <h5 style={styles.contentHeaderStyle}>Contact Me</h5>
               </div>
+              <Paper zDepth={0} style={{backgroundColor:'none'}}>
+                <div style={{display: 'flex', justifyContent:'center', alignItems: 'center', marginTop: '80px', marginBottom: '440px'}}>
+                  <IconButton href={'https://github.com/HokiePedro'} target = '_blank' style={{padding: 0, margin: '5px'}}> <img src={'src/img/github.svg'} height='48px'/> </IconButton>
+                  <IconButton href={'https://www.linkedin.com/in/psorto/'} target = '_blank' style={{padding: 0, margin: '5px'}}> <img src={'src/img/linkedin.svg'} height='48px'/> </IconButton>
+                  <IconButton href={'https://gitlab.com/hokiepedro'} target = '_blank' style={{padding: 0, margin: '5px'}}> <img src={'src/img/gitlab.svg'} height='48px'/> </IconButton>
+                  <IconButton href={`mailto:${'pedro.sorto@outlook.com'}`} iconStyle={{width:'48px', height:'48px'}} style={{padding: 0, margin: '5px'}}> <CommunicationEmail/> </IconButton>
+                </div>
+              </Paper>
+            </div>
           </div>
-          <div style={{display:'flex', flexDirection:'row', justifyContent:'center', margin:'40px'}}>
-            <Paper zDepth={0} style={{height:'400px', width:'500px', backgroundColor:'#efefef'}}>
-              <h5 style={{fontFamily:'sans-serif',fontSize:'14px', fontWeight:100, lineHeight:2.5}}>Nemo enim ipsam voluptatem, quia voluptas sit, aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos,
-              qui ratione voluptatem sequi nesciunt, neque porro quisquam est, qui dolorem ipsum, quia dolor sit amet, consectetur, adipisci[ng]
-              velit, sed quia non numquam [do] eius modi tempora inci[di]dunt, ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad
-              minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem
-              vel eum iure reprehenderit, qui in ea voluptate velit esse, quam nihil molestiae consequatur, vel illum, qui dolorem eum fugiat, quo
-            voluptas nulla pariatur?</h5>
-
-            </Paper>
-            <Paper zDepth={1} style={{height:'400px', width:'500px', marginLeft:'60px'}}>
-              <Avatar style={{marginLeft:'20px', marginRight: '8px'}} backgroundColor={white} size={95} src="src/img/react.svg"/>
-              <Avatar style={{marginLeft:'20px', marginRight: '8px'}} backgroundColor={white} size={95} src="src/img/Tux.svg"/>
-              <Avatar style={{marginLeft:'20px', marginRight: '8px'}} backgroundColor={white} size={95} src="src/img/Npm-logo.svg"/>
-              <Avatar style={{marginLeft:'20px', marginRight: '8px'}} backgroundColor={white} size={95} src="src/img/docker.svg"/>
-              <Avatar style={{marginLeft:'20px', marginRight: '8px'}} backgroundColor={white} size={95} src="src/img/AngularJS-Shield.svg"/>
-              <Avatar style={{marginLeft:'20px', marginRight: '8px'}} backgroundColor={white} size={95} src="src/img/cpp_logo.svg"/>
-              <Avatar style={{marginLeft:'20px', marginRight: '8px'}} backgroundColor={white} size={95} src="src/img/gitlogo.png"/>
-              <Avatar style={{marginLeft:'20px', marginRight: '8px'}} backgroundColor={white} size={95} src="src/img/elasticsearch.svg"/>
-              <Avatar style={{marginLeft:'20px', marginRight: '8px'}} backgroundColor={white} size={95} src="src/img/html5.svg"/>
-              <Avatar style={{marginLeft:'20px', marginRight: '8px'}} backgroundColor={white} size={95} src="src/img/JIRA_logo.svg"/>
-              <Avatar style={{marginLeft:'20px', marginRight: '8px'}} backgroundColor={white} size={95} src="src/img/jspm_io.svg"/>
-              <Avatar style={{marginLeft:'20px', marginRight: '8px'}} backgroundColor={white} size={95} src="src/img/saltstack_logo.svg"/>
-              <Avatar style={{marginLeft:'20px', marginRight: '8px'}} backgroundColor={white} size={95} src="src/img/webpack.svg"/>
-              <Avatar style={{marginLeft:'20px', marginRight: '8px'}} backgroundColor={white} size={95} src="src/img/python.png"/>
-              <Avatar style={{marginLeft:'20px', marginRight: '8px'}} backgroundColor={white} size={95} src="src/img/css3.png"/>
-              <Avatar style={{marginLeft:'20px', marginRight: '8px'}} backgroundColor={white} size={95} src="src/img/aws.png"/>
-            </Paper>
-          </div>
-        </div>
-        <div style={styles.root}>
-          <GridList
-            cols={2}
-            cellHeight={200}
-            padding={15}
-            style={styles.gridList}
-          >
-            {tilesData.map((tile) => (
-              <GridTile
-                key={tile.author}
-                title={tile.title}
-                actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
-                actionPosition="left"
-                titlePosition="top"
-                titleBackground="linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
-                cols={tile.featured ? 2 : 1}
-                rows={tile.featured ? 2 : 1}
-              >
-                <img src={tile.img} />
-              </GridTile>
-            ))}
-          </GridList>
         </div>
       </div>
     );
