@@ -44,15 +44,14 @@ class Homepage extends Component{
  );
 
     return (
-    <div>
-        <div style={styles.mainContainer}>
-          <Paper elevation={3} style={styles.landing}>
+        <div id='topContainer' style={styles.mainContainer}>
+          <Paper id='mainTitle' elevation={3} style={styles.landing}>
             <div style={styles.titleStyling}>
               <Scrollchor to='#personalLife' style={styles.scrollNav}><h1 style={styles.nameHeaderStyle}>{Configs.headers.title}</h1></Scrollchor>
             </div>
           </Paper>
           <Sticky stickyStyle={{zIndex: 110}}>
-            <div>
+            <div id='appBar'>
               <AppBar style={styles.appBarStyle}
                 titleStyle={styles.appBarTitleStyle}
                 title={
@@ -65,7 +64,7 @@ class Homepage extends Component{
           </Sticky>
           <div id='personalLife' style={styles.personalLifeContainer}>
               <div style={styles.personalLifeElements}>
-                <h5 style={styles.contentHeaderStyle}>{Configs.headers.sectionHeaders.personalLife}</h5>
+                 <h5 style={styles.contentHeaderStyle}>{Configs.headers.sectionHeaders.personalLife}</h5>
                  <div style={styles.personalDetailsContentStyle}>
                   <Paper zDepth={0} style={styles.personalDetailsStyle}>
                     <h3 style={styles.pHeaderStyle}>{Configs.headers.contentHeaders.personalDetails}</h3>
@@ -82,8 +81,8 @@ class Homepage extends Component{
           <div id='professionalLife' style={styles.professionalLifeContainer}>
               <div style={styles.professionalLifeContents}>
                 <h5 style={styles.contentHeaderStyle}>{Configs.headers.sectionHeaders.professionalLife}</h5>
-                 <div style={styles.professionalIconsContainer}>
-                   <Paper zDepth={1} style={styles.professionalLifePaperStyle}>
+                 <div id='iconsContainer' style={styles.professionalIconsContainer}>
+                  <Paper zDepth={1} style={styles.professionalLifePaperStyle}>
                     {
                       Object.keys(Configs.paths.technologies).map((iconValues) =>
                         (
@@ -160,7 +159,6 @@ class Homepage extends Component{
             </div>
           </div>
         </div>
-      </div>
     );
   }
 }

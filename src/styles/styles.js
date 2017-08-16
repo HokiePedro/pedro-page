@@ -39,6 +39,7 @@ const landing = {
   backgroundPosition: '22% 70%',
   backgroundSize: 'cover',
   height: 1000,
+  width: '100%'
 }
 const root = {
   display: 'flex',
@@ -124,14 +125,16 @@ const personalDetailsTextStyle = {
 const personalDetailsContentStyle = {
   display:'flex',
   flexDirection:'row',
-  justifyContent:'space-around'
+  justifyContent:'space-around',
+  flexWrap: 'wrap'
 }
 const professionalLifeContainer = {
   display:'flex',
   flexDirection:'row',
+  justifyContent:'center',
+  margin:'20px 40px 160px 40px',
+  paddingTop:120,
   justifyContent:'space-around',
-  margin:'40px 40px 160px 40px',
-  paddingTop:120
 }
 const professionalLifeContents = {
   display: 'flex',
@@ -141,12 +144,15 @@ const professionalLifeContents = {
 const professionalIconsContainer = {
   display:'flex',
   flexDirection:'row',
-  justifyContent:'space-between',
-  flexWrap:'wrap'
+  flexWrap: 'wrap',
+  justifyContent:'space-between'
 }
 const professionalLifePaperStyle = {
   height:'350px',
-  width:'350px'
+  width:'350px',
+  marginLeft: '40px',
+  marginRight: '40px',
+  zIndex: 1
 }
 const professionalDetailsPaper = {
   height:'350px',
@@ -164,8 +170,8 @@ const professionalRolesStyle = {
 const professionalTextPaperStyle = {
   height:'350px',
   width:'350px',
-  marginLeft: '10px',
-  marginRight: '10px',
+  marginLeft: '40px',
+  marginRight: '40px',
   fontWeight: 100
 }
 const professionalTextStyle = {
@@ -179,7 +185,7 @@ const experienceContainer = {
   display:'flex',
   flexDirection:'row',
   justifyContent:'center',
-  margin:'40px',
+  margin:'40px 40px 160px 40px',
   paddingTop: 120
 }
 const experienceRolesContainer = {
@@ -197,7 +203,7 @@ const experiencesStyle = {
   flexDirection:'row',
   justifyContent:'flex-start',
   marginBottom: '50px',
-  marginLeft: '110px'
+  marginLeft: '70px'
 }
 const iconButtonContainer = {
   display: 'flex',
